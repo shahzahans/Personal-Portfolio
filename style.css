@@ -482,7 +482,7 @@ body.dark-mode footer #dark-mode-toggle:hover {
 /* Dark mode styles */
 body.dark-mode {
     background-color: #121212;
-    color: #ffffff;
+    color: black;
 }
 
 body.dark-mode a {
@@ -494,7 +494,7 @@ body.dark-mode nav {
 }
 
 body.dark-mode footer {
-    background-color: #333333;
+    background-color: white;
     color: #ffffff;
 }
 
