@@ -92,6 +92,16 @@
         height: 46vw;
         justify-content: center;
     }
+    .section__text {
+        text-align: justify;
+        padding: 1rem; 
+        margin: 0 auto;
+    }
+    .section__text p {
+        line-height: 1.5rem; 
+        margin-bottom: 1rem; 
+        font-size: 1rem; 
+    }
     .section__text_p2 {
         font-size: 1.25rem;
     }
