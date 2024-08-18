@@ -10,8 +10,6 @@
 
 
 
-
-
 @media screen and (max-width: 1200px) {
     #desktop-nav {
         display: none;
@@ -93,7 +91,7 @@
         justify-content: center;
     }
     .section__text {
-        text-align: justify;
+        text-align: center;
         padding: 1rem; 
         margin: 0 auto;
     }
@@ -112,7 +110,6 @@
         text-align: justify;
     }
 }
-
 
 
 

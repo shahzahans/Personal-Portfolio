@@ -347,7 +347,7 @@ section {
 
 .article-container {
     display: flex;
-    text-align: initial;
+    text-align: center;
     flex-wrap: wrap;
     flex-direction: row;
     gap: 2.5rem;
@@ -368,6 +368,14 @@ article .icon {
     cursor: default;
     height: 4rem;
     width: 4rem;
+}
+
+article h3, article p {
+    margin: 0; /* Reset margin */
+}
+
+.details-container {
+    margin-bottom: 3rem; /* Add some space between sections */
 }
 
 /* Projects Section */
