@@ -46,6 +46,44 @@ nav {
     font-size: 1.5rem;
 }
 
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    list-style: none;
+    min-width: 180px;
+    padding: 0.5rem 0;
+    border-radius: 0.75rem;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: all 200ms ease-in-out;
+    z-index: 10;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.nav-dropdown-menu li {
+    list-style: none;
+}
+
+.nav-dropdown-menu a {
+    display: block;
+    padding: 0.5rem 1.25rem;
+    font-size: 1.1rem;
+    white-space: nowrap;
+}
+
 a{
     color: black;
     text-decoration: none;
@@ -122,7 +160,7 @@ a:hover{
 }
 
 .menu-links.open {
-    max-height: 300px;
+    max-height: 480px;
 }
 
 .hamburger-icon.open span:first-child {
@@ -190,6 +228,24 @@ section {
 .section__text__p2 {
     font-size: 1.7rem;
     margin-bottom: 1rem;
+}
+
+.section__tagline {
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.typing-cursor {
+    display: inline-block;
+    margin-left: 2px;
+    animation: blink 0.8s step-end infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
 }
 
 .title {
@@ -383,15 +439,120 @@ article h3, article p {
     position: relative;
 }
 
+#play-a-game {
+    position: relative;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.game-scoreboard {
+    display: flex;
+    gap: 1.5rem;
+    font-weight: 600;
+    color: rgb(85, 85, 85);
+}
+
+#flappy-shad-canvas {
+    border: rgb(163, 163, 163) 0.1rem solid;
+    border-radius: 1rem;
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+.game-message {
+    max-width: 32rem;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+#algorithm-analysis,
+#beyond-code {
+    position: relative;
+}
+
 .color-container {
     border-color: rgb(163, 163,  163);
     background: rgb(250, 250, 250);
+}
+
+.featured-project-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.featured-project {
+    max-width: 32rem;
+    width: 100%;
+}
+
+.app-store-badge {
+    width: 8rem;
+    height: auto;
+    cursor: pointer;
 }
 
 .project-img {
     border-radius: 2rem;
     width: 90%;
     height: 90%;
+}
+
+.personal-photo {
+    width: 14rem;
+    height: 14rem;
+    object-fit: cover;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    transition: transform 200ms ease;
+}
+
+.personal-photo:hover {
+    transform: scale(1.03);
+}
+
+.personal-photo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 14rem;
+}
+
+.personal-photo-item figcaption {
+    font-size: 0.85rem;
+    color: rgb(85, 85, 85);
+}
+
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 200ms ease;
+    z-index: 1000;
+}
+
+.lightbox-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightbox-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 1rem;
+    cursor: zoom-out;
 }
 
 .project-title {

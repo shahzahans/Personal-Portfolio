@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More — Shadman's Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mediaqueries.css">
+</head>
+<body>
+    <nav id="desktop-nav">
+        <div class="logo">Shadman Shahzahan</div>
+        <div>
+            <ul class="nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li class="nav-dropdown">
+                    <a href="#beyond-code">More</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="#beyond-code">Beyond Code</a></li>
+                        <li><a href="#algorithm-analysis">Algorithm Analysis</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <nav id="hamburger-nav">
+        <div class="logo">Shadman Shahzahan</div>
+        <div class="hamburger-menu">
+            <div class="hamburger-icon" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="menu-links">
+                <ul>
+                    <li><a href="index.html#about" onclick="toggleMenu()">About</a></li>
+                    <li><a href="index.html#experience" onclick="toggleMenu()">Experience</a></li>
+                    <li><a href="index.html#projects" onclick="toggleMenu()">Projects</a></li>
+                    <li><a href="#beyond-code" onclick="toggleMenu()">Beyond Code</a></li>
+                    <li><a href="#algorithm-analysis" onclick="toggleMenu()">Algorithm Analysis</a></li>
+                    <li><a href="index.html#contact" onclick="toggleMenu()">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="beyond-code">
+        <p class="section__text__p1">A Little</p>
+        <h1 class="title">Beyond Code</h1>
+
+        <div class="experience-details-container">
+            <div class="about-containers">
+                <div class="details-container color-container">
+                    <p style="padding: 0 1.5rem 1rem 1.5rem;">
+                        I spend most of my downtime outdoors — chasing mountain views in the Cascades, exploring
+                        the coast, and stumbling onto whatever's out there (yes, that includes a beached whale).
+                    </p>
+                    <p style="padding: 0 1.5rem 1rem 1.5rem;">
+                        <strong>Currently tinkering with:</strong> TripSplit
+                    </p>
+                    <div class="article-container">
+                        <figure class="personal-photo-item">
+                            <img src="./assets/Mountain.jpg" alt="Mountain view through the trees" class="personal-photo" onclick="openLightbox(this)" />
+                            <figcaption>A quiet morning view of the Cascades through the trees.</figcaption>
+                        </figure>
+                        <figure class="personal-photo-item">
+                            <img src="./assets/Whale.jpg" alt="A beached whale found during a coastal walk" class="personal-photo" onclick="openLightbox(this)" />
+                            <figcaption>A beached whale I came across during a coastal walk — not something you see every day.</figcaption>
+                        </figure>
+                        <figure class="personal-photo-item">
+                            <img src="./assets/bridge.jpg" alt="Bridge over the water" class="personal-photo" onclick="openLightbox(this)" />
+                            <figcaption>Crossing a bridge along the coast on the same trip.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="lightbox-overlay" class="lightbox-overlay" onclick="closeLightbox()">
+            <img id="lightbox-img" src="" alt="" class="lightbox-img" />
+        </div>
+
+        <img
+            src="./assets/arrow.png"
+            alt="Arrow icon"
+            class="icon arrow"
+            onclick="location.href='./#algorithm-analysis'"
+        />
+    </section>
+
+    <section id="algorithm-analysis">
+        <p class="section__text__p1">Explore My</p>
+        <h1 class="title">Algorithm Analysis</h1>
+
+        <div class="experience-details-container">
+            <div class="about-containers">
+                <div class="details-container color-container">
+                    <h2 class="experience-sub-title project-title">Algorithm Analysis Strategies</h2>
+                    <p style="padding: 0 1.5rem 1rem 1.5rem; text-align: left;">
+                        This project demonstrates my understanding of core algorithm design strategies including
+                        <strong>Greedy Algorithms</strong>, <strong>Divide and Conquer</strong>,
+                        <strong>Dynamic Programming</strong>, and <strong>NP Problems</strong>.
+                        <br><br>
+                        It includes implementations and explanations of classic algorithms such as
+                        <strong>Huffman Coding</strong>, <strong>Fractional Knapsack</strong>,
+                        <strong>Karatsuba Multiplication</strong>, <strong>Fast Fourier Transform (FFT)</strong>,
+                        <strong>Longest Increasing Subsequence (LIS)</strong>, <strong>Edit Distance</strong>,
+                        and <strong>Vertex Cover</strong>.
+                        <br><br>
+                        Through this work, I analyzed problem-solving strategies, compared time complexities,
+                        and practiced implementing theoretical concepts in Python.
+                    </p>
+
+                    <div class="btn-container">
+                        <button
+                            class="btn btn-color-2 project-btn"
+                            onclick="window.open('https://github.com/shahzahans/Algorithm-Analysis-Strategies')">
+                            View on GitHub
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <img
+            src="./assets/arrow.png"
+            alt="Arrow icon"
+            class="icon arrow"
+            onclick="location.href='index.html#contact'"
+        />
+    </section>
+
+    <footer>
+        <nav>
+            <div class="nav-links-container">
+                <ul class="nav-links">
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#experience">Experience</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="#beyond-code">Beyond Code</a></li>
+                    <li><a href="#algorithm-analysis">Algorithm Analysis</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="footer-bottom">
+            <button id="dark-mode-toggle">Dark Mode</button>
+            <p>Copyright &#169; 2026 Shadman Shahzahan. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

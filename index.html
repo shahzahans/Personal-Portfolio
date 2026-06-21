@@ -15,7 +15,13 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#algorithm-analysis">Algorithm-Analysis</a></li>
+                <li class="nav-dropdown">
+                    <a href="more.html">More</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="more.html#beyond-code">Beyond Code</a></li>
+                        <li><a href="more.html#algorithm-analysis">Algorithm Analysis</a></li>
+                    </ul>
+                </li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -34,7 +40,8 @@
                     <li><a href="#about" onclick="toggleMenu()">About</a></li>
                     <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
                     <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-                    <li><a href="#algorithm-analysis" onclick="toggleMenu()">Algorithm Analysis</a></li>
+                    <li><a href="more.html#beyond-code" onclick="toggleMenu()">Beyond Code</a></li>
+                    <li><a href="more.html#algorithm-analysis" onclick="toggleMenu()">Algorithm Analysis</a></li>
                     <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
                 </ul>
             </div>
@@ -48,7 +55,8 @@
         <div class="section__text">
             <p class="section__text__p1">Hello, I'm</p>
             <h1 class="title">Shadman</h1>
-            <p class="section__text__p2">Computer Science Student</p>
+            <p class="section__text__p2"><span id="typing-text"></span><span class="typing-cursor">|</span></p>
+            <p class="section__tagline">I build backend systems where correctness matters.</p>
             <div class="btn-container">
                 <button 
                     class="btn btn-color-2"
@@ -80,7 +88,7 @@
         <div class="section-container">
             <div class="section__pic-container">
                 <img
-                    src="./assets/about-pic.JPG" 
+                    src="./assets/about-pic.jpg"
                     alt="Profile picture"
                     class="about-pic"
                 />
@@ -94,7 +102,7 @@
                             class="icon"
                         />
                         <h3>Experience</h3>
-                        <p>2+ years <br />Software Development</p>
+                        <p>Software Engineering Intern <br />Attention.ad</p>
                     </div>
                     <div class="details-container">
                         <img 
@@ -112,11 +120,15 @@
                 </div>
                 <div class="text-container">
                     <p>
-                        Hello! I'm Shadman Shahzahan, a Computer Science student with a minor in Data Analytics at Seattle Pacific University, graduating in July 2026. I enjoy building real-world software—from small utilities to full-stack web apps.
+                        I’m drawn to the parts of software that have to be right — the data models, APIs, and
+                        pipelines a product quietly depends on. I tend to chase correctness and traceability
+                        over shortcuts: on AoMatch I linked every extracted field back to its exact source
+                        sentence so reviewers could trust the output, and on TripSplit I added database-level
+                        transaction locking so a group’s shared balances are never off by a cent.
                         <br><br>
-                        Recently, I worked as a Software Engineering Intern on the DAO team at Attention.ad, where I helped build a Web3 creator platform with modern backend and deployment tools. I am also currently developing my senior software project, TripSplit, a full-stack group travel expense tracker that helps friends fairly split and manage costs on trips.
-                        <br><br>
-                        Beyond coursework, I’ve built projects in C++, Python, R, and JavaScript, and I’m active in leadership with the Computer Science Club and SPU Developers Club. I’m always looking for opportunities to grow as a developer and contribute to impactful products.
+                        I do most of this in Node, Express, FastAPI, and PostgreSQL on AWS, and I sharpened it
+                        during a backend internship at Attention.ad. Outside of building, I help run the CS Club
+                        and SPU Developers Club.
                     </p>
                 </div>
             </div>
@@ -142,49 +154,30 @@
                             <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
                             <div>
                                 <h3>HTML</h3>
-                                <p>Intermediate</p>
                             </div>
                         </article>
                         <article>
                             <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
                             <div>
                                 <h3>CSS</h3>
-                                <p>Intermediate</p>
                             </div>
                         </article>
                         <article>
                             <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
                             <div>
                                 <h3>JavaScript</h3>
-                                <p>Basic</p>
                             </div>
                         </article>
                         <article>
                             <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
                             <div>
-                                <h3>Responsive Design</h3>
-                                <p>Experienced</p>
+                                <h3>TypeScript</h3>
                             </div>
                         </article>
                         <article>
                             <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
                             <div>
-                                <h3>React/Qt6</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
-                            <div>
-                                <h3>UI/UX Design</h3>
-                                <p>Basic</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
-                            <div>
-                                <h3>Debugging</h3>
-                                <p>Experienced</p>
+                                <h3>React</h3>
                             </div>
                         </article>
                     </div>
@@ -196,50 +189,73 @@
                         <article>
                             <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
                             <div>
-                                <h3>C++</h3>
-                                <p>Proficient</p>
+                                <h3>Node.js</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
+                            <div>
+                                <h3>Express</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
+                            <div>
+                                <h3>FastAPI</h3>
                             </div>
                         </article>
                         <article>
                             <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
                             <div>
                                 <h3>Python</h3>
-                                <p>Proficient</p>
                             </div>
                         </article>
                         <article>
                             <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
                             <div>
                                 <h3>Java</h3>
-                                <p>Intermediate</p>
                             </div>
                         </article>
                         <article>
                             <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
                             <div>
-                                <h3>Node JS</h3>
-                                <p>Intermediate</p>
+                                <h3>C++</h3>
                             </div>
                         </article>
                         <article>
                             <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
                             <div>
-                                <h3>Express JS</h3>
-                                <p>Intermediate</p>
+                                <h3>PostgreSQL</h3>
                             </div>
                         </article>
                         <article>
                             <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
                             <div>
-                                <h3>R/R-Studio</h3>
-                                <p>Proficient</p>
+                                <h3>MongoDB</h3>
                             </div>
                         </article>
                         <article>
                             <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
                             <div>
-                                <h3>Git/Github</h3>
-                                <p>Experienced</p>
+                                <h3>Prisma</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
+                            <div>
+                                <h3>Docker</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
+                            <div>
+                                <h3>AWS</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
+                            <div>
+                                <h3>Git</h3>
                             </div>
                         </article>
                     </div>
@@ -253,11 +269,11 @@
                     <div class="professional-grid">
                         <div class="professional-column">
                             <h3>Software Engineering Intern — Attention.ad</h3>
-                            <p class="professional-meta">Summer 2025 · DAO Team</p>
+                            <p class="professional-meta">Summer 2025</p>
                             <p class="professional-text">
-                                Built backend and Web3 features for the Attention Platform, including smart
-                                contract integration, REST APIs, multi-database setup (MongoDB, PostgreSQL,
-                                MySQL), and deployment to Vercel.
+                                Built REST APIs with Node and Express, designed MongoDB schemas for high-frequency
+                                data, set up CI/CD pipelines, and optimized async backend services to cut API
+                                latency on key endpoints.
                             </p>
                         </div>
 
@@ -280,35 +296,44 @@
         <p class="section__text__p1">Browse My Recent</p>
         <h1 class="title">Projects</h1>
         <div class="experience-details-container">
-            <div class="about-containers">
-
-                <div class="details-container color-container">
+            <div class="featured-project-container">
+                <div class="details-container color-container featured-project">
                     <div class="article-container">
-                        <img 
-                            src="./assets/tripsplit.webp"
+                        <img
+                            src="./assets/tripsplit.png"
                             alt="TripSplit Senior Project"
                             class="project-img"
                         />
                     </div>
-                    <h2 class="experience-sub-title project-title">TripSplit – Senior Project (In Progress)</h2>
+                    <h2 class="experience-sub-title project-title">TripSplit</h2>
                     <p style="padding: 0 1rem 1rem 1rem;">
-                        TripSplit is a full-stack web app that helps groups plan trips and automatically split
-                        shared expenses. I’m leading the backend and database design, building REST APIs and data
-                        models to support users, trips, and settlements.
+                        TripSplit is a mobile application that helps groups plan trips and automatically split
+                        shared expenses. I’m leading the backend and database design.
                     </p>
+                    <div class="btn-container">
+                        <img
+                            src="./assets/App Store.svg"
+                            alt="Download TripSplit on the App Store"
+                            class="app-store-badge"
+                            onclick="window.open('https://apps.apple.com/us/app/tripsplit-expense-sharing/id6761230723')"
+                        />
+                    </div>
                 </div>
+            </div>
+
+            <div class="about-containers">
 
                 <div class="details-container color-container">
                     <div class="article-container">
-                        <img 
-                            src="./assets/project-1.JPG"
-                            alt="Project-1"
+                        <img
+                            src="./assets/Aomatch.png"
+                            alt="AoMatch project screenshot"
                             class="project-img"
                         />
                     </div>
-                    <h2 class="experience-sub-title project-title">VCT Team Builder (AI Chat-Box)</h2>
+                    <h2 class="experience-sub-title project-title">AoMatch - Document Extraction & Review Pipeline</h2>
                     <div class="btn-container">
-                        <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/jadendang/VCT-Team-Builder'">
+                        <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/shahzahans/Aomatch/tree/main'">
                             Open in GitHub
                         </button>
                     </div>
@@ -316,15 +341,15 @@
 
                 <div class="details-container color-container">
                     <div class="article-container">
-                        <img 
-                            src="./assets/project-2.JPG"
-                            alt="Project-2"
+                        <img
+                            src="./assets/IBM.png"
+                            alt="IBM Quantum Challenge project screenshot"
                             class="project-img"
                         />
                     </div>
-                    <h2 class="experience-sub-title project-title">User-Tracker Discord Bot</h2>
+                    <h2 class="experience-sub-title project-title">IBM Quantum Challenge</h2>
                     <div class="btn-container">
-                        <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/shahzahans/User-Tracker-Bot'">
+                        <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/shahzahans/ibm-quantum-hackathon'">
                             Open in GitHub
                         </button>
                     </div>
@@ -332,13 +357,13 @@
 
                 <div class="details-container color-container">
                     <div class="article-container">
-                        <img 
-                            src="./assets/project-3.JPG"
-                            alt="Project-3"
+                        <img
+                            src="./assets/Yelp.jpg"
+                            alt="QuestEats project screenshot"
                             class="project-img"
                         />
                     </div>
-                    <h2 class="experience-sub-title project-title">QuestEats (Yelp Hackathon)</h2>
+                    <h2 class="experience-sub-title project-title">QuestEats </h2>
                     <div class="btn-container">
                         <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/shahzahans/Yelp-Hackathon'">
                             Open in GitHub
@@ -348,52 +373,37 @@
 
             </div>
         </div>
-        <img 
-            src="./assets/arrow.png" 
-            alt="Arrow icon" 
+        <img
+            src="./assets/arrow.png"
+            alt="Arrow icon"
             class="icon arrow"
-            onclick="location.href='./#algorithm-analysis'"
+            onclick="location.href='./#play-a-game'"
         />
     </section>
 
-    <!-- NEW ALGORITHM ANALYSIS SECTION -->
-    <section id="algorithm-analysis">
-        <p class="section__text__p1">Explore My</p>
-        <h1 class="title">Algorithm Analysis</h1>
+    <section id="play-a-game">
+        <p class="section__text__p1">Take a Break and</p>
+        <h1 class="title">Play A Game</h1>
 
         <div class="experience-details-container">
             <div class="about-containers">
-                <div class="details-container color-container">
-                    <h2 class="experience-sub-title project-title">Algorithm Analysis Strategies</h2>
-                    <p style="padding: 0 1.5rem 1rem 1.5rem; text-align: left;">
-                        This project demonstrates my understanding of core algorithm design strategies including
-                        <strong>Greedy Algorithms</strong>, <strong>Divide and Conquer</strong>,
-                        <strong>Dynamic Programming</strong>, and <strong>NP Problems</strong>.
-                        <br><br>
-                        It includes implementations and explanations of classic algorithms such as
-                        <strong>Huffman Coding</strong>, <strong>Fractional Knapsack</strong>,
-                        <strong>Karatsuba Multiplication</strong>, <strong>Fast Fourier Transform (FFT)</strong>,
-                        <strong>Longest Increasing Subsequence (LIS)</strong>, <strong>Edit Distance</strong>,
-                        and <strong>Vertex Cover</strong>.
-                        <br><br>
-                        Through this work, I analyzed problem-solving strategies, compared time complexities,
-                        and practiced implementing theoretical concepts in Python.
-                    </p>
-
-                    <div class="btn-container">
-                        <button 
-                            class="btn btn-color-2 project-btn"
-                            onclick="window.open('https://github.com/shahzahans/Algorithm-Analysis-Strategies')">
-                            View on GitHub
-                        </button>
+                <div class="details-container color-container game-container">
+                    <h2 class="experience-sub-title project-title">Flappy Shad</h2>
+                    <div class="game-scoreboard">
+                        <span id="flappy-shad-score">Score: 0</span>
+                        <span id="flappy-shad-best">Best: 0</span>
                     </div>
+                    <canvas id="flappy-shad-canvas" width="600" height="260" tabindex="0"></canvas>
+                    <p id="flappy-shad-message" class="game-message">
+                        Click the game or press Space to flap. Starts slow, gets harder near the finish line.
+                    </p>
                 </div>
             </div>
         </div>
 
-        <img 
-            src="./assets/arrow.png" 
-            alt="Arrow icon" 
+        <img
+            src="./assets/arrow.png"
+            alt="Arrow icon"
             class="icon arrow"
             onclick="location.href='./#contact'"
         />
@@ -409,7 +419,7 @@
                     alt="Email icon"
                     class="icon contact-icon email-icon"
                 />
-                <p><a href="mailto:shahzahanshadman@gmail.com">shahzahanshadman@gmail.com</a></p>
+                <p><a href="mailto:shahzahans@outlook.com">shahzahans@outlook.com</a></p>
             </div>
             <div class="contact-info-container">
                 <img 
@@ -429,7 +439,8 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#projects">Projects</a></li>
-                    <li><a href="#algorithm-analysis">Algorithm Analysis</a></li>
+                    <li><a href="more.html#beyond-code">Beyond Code</a></li>
+                    <li><a href="more.html#algorithm-analysis">Algorithm Analysis</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -441,5 +452,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="game.js"></script>
 </body>
 </html>
