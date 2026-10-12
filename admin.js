@@ -4,6 +4,11 @@
 const $ = (id) => document.getElementById(id);
 const messageEl = $('admin-message');
 
+// Remember this device as the owner's so the portfolio shows its "Update resume" link.
+function rememberOwnerDevice() {
+    try { localStorage.setItem('portfolioOwner', '1'); } catch (e) {}
+}
+
 function showMessage(text, kind) {
     messageEl.textContent = text;
     messageEl.className = 'admin-message' + (kind ? ' admin-message-' + kind : '');
@@ -79,6 +84,7 @@ $('register-device').addEventListener('click', async () => {
             },
         };
         await api('register/verify', { setupToken, challengeId, response, label: $('device-label').value.trim() });
+        rememberOwnerDevice();
         $('setup-token').value = '';
         showMessage('Passkey set up. This device can now update your resume.', 'success');
         loadStatus();
@@ -151,6 +157,7 @@ $('confirm-upload').addEventListener('click', async () => {
             },
         };
         await api('resume', { challengeId, response, file: { name: selectedFile.name, data } });
+        rememberOwnerDevice();
         showMessage('Resume updated. The Download Resume button now serves the new file.', 'success');
         $('cancel-upload').click();
         loadStatus();

@@ -80,3 +80,11 @@ function closeLightbox() {
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closeLightbox();
 });
+
+// Show the "Update resume" link only on devices that have passed the passkey check on update.html.
+// This just keeps the link out of visitors' way; the passkey check on the server is what protects uploads.
+try {
+    if (localStorage.getItem('portfolioOwner') === '1') {
+        document.querySelectorAll('.owner-link').forEach((el) => { el.hidden = false; });
+    }
+} catch (e) {}

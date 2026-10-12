@@ -110,6 +110,15 @@ a:hover{
     cursor: default;
 }
 
+.owner-link a {
+    display: inline-flex;
+    align-items: center;
+}
+
+.owner-link a:hover {
+    text-decoration: none;
+}
+
 /* HAMBURGER MENU */
 
 #hamburger-nav {
