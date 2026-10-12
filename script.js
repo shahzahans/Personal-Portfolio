@@ -1,42 +1,41 @@
 function toggleMenu() {
     const menu = document.querySelector(".menu-links")
     const icon = document.querySelector(".hamburger-icon")
-    menu.classList.toggle("open");
-    icon.classList.toggle("open");
-
+    const isOpen = menu.classList.toggle("open");
+    icon.classList.toggle("open", isOpen);
+    icon.setAttribute("aria-expanded", String(isOpen));
+    icon.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
 }
-// Function to toggle dark mode
+
+// Dark mode: the saved theme is applied by an inline script in <head> to avoid a flash
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+
+function updateDarkModeLabel() {
+    if (!darkModeToggle) return;
+    const isDark = document.documentElement.classList.contains('dark-mode');
+    darkModeToggle.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+}
+
 function toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
-
-    // Save user's preference to localStorage
-    if (document.body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-    } else {
-        localStorage.setItem('theme', 'light');
-    }
+    const isDark = document.documentElement.classList.toggle('dark-mode');
+    try {
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    } catch (e) {}
+    updateDarkModeLabel();
 }
 
-// Event listener for the dark mode toggle button
-document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
-
-// Load the user's theme preference on page load
-window.onload = function() {
-    const theme = localStorage.getItem('theme');
-    if (theme === 'dark') {
-        document.body.classList.add('dark-mode');
-    }
-};
+if (darkModeToggle) {
+    darkModeToggle.addEventListener('click', toggleDarkMode);
+    updateDarkModeLabel();
+}
 
 // Typing animation for the hero subtitle
 const typingPhrases = [
     "Software Engineer",
-    "Cloud Infrastructure",
-    "Full-Stack Developer",
     "Backend Developer",
-    "Frontend Developer",
-    "Product Manager",
-    "Web3 Developer"
+    "Full-Stack Developer",
+    "Cloud Infrastructure",
+    "Frontend Developer"
 ];
 const typingTarget = document.getElementById('typing-text');
 
@@ -77,3 +76,7 @@ function closeLightbox() {
     const overlay = document.getElementById('lightbox-overlay');
     if (overlay) overlay.classList.remove('open');
 }
+
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeLightbox();
+});

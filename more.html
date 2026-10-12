@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>More — Shadman's Portfolio</title>
+    <meta name="description" content="Beyond code and algorithm analysis work from Shadman Shahzahan.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="More — Shadman Shahzahan">
+    <meta property="og:description" content="Beyond code and algorithm analysis work from Shadman Shahzahan.">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/favicon-192.png">
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+    <script>
+        try {
+            if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark-mode');
+        } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="mediaqueries.css">
 </head>
@@ -30,15 +45,16 @@
     <nav id="hamburger-nav">
         <div class="logo">Shadman Shahzahan</div>
         <div class="hamburger-menu">
-            <div class="hamburger-icon" onclick="toggleMenu()">
+            <button class="hamburger-icon" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
             <div class="menu-links">
                 <ul>
                     <li><a href="index.html#about" onclick="toggleMenu()">About</a></li>
                     <li><a href="index.html#experience" onclick="toggleMenu()">Experience</a></li>
+                    <li><a href="index.html#tech-stack" onclick="toggleMenu()">Tech Stack</a></li>
                     <li><a href="index.html#projects" onclick="toggleMenu()">Projects</a></li>
                     <li><a href="#beyond-code" onclick="toggleMenu()">Beyond Code</a></li>
                     <li><a href="#algorithm-analysis" onclick="toggleMenu()">Algorithm Analysis</a></li>
@@ -55,24 +71,27 @@
         <div class="experience-details-container">
             <div class="about-containers">
                 <div class="details-container color-container">
-                    <p style="padding: 0 1.5rem 1rem 1.5rem;">
+                    <p class="page-text">
                         I spend most of my downtime outdoors — chasing mountain views in the Cascades, exploring
                         the coast, and stumbling onto whatever's out there (yes, that includes a beached whale).
                     </p>
-                    <p style="padding: 0 1.5rem 1rem 1.5rem;">
-                        <strong>Currently tinkering with:</strong> TripSplit
-                    </p>
                     <div class="article-container">
                         <figure class="personal-photo-item">
-                            <img src="./assets/Mountain.jpg" alt="Mountain view through the trees" class="personal-photo" onclick="openLightbox(this)" />
+                            <button class="photo-button" onclick="openLightbox(this.firstElementChild)" aria-label="Enlarge photo: Mountain view through the trees">
+                                <img src="./assets/Mountain.jpg" alt="Mountain view through the trees" class="personal-photo" loading="lazy" />
+                            </button>
                             <figcaption>A quiet morning view of the Cascades through the trees.</figcaption>
                         </figure>
                         <figure class="personal-photo-item">
-                            <img src="./assets/Whale.jpg" alt="A beached whale found during a coastal walk" class="personal-photo" onclick="openLightbox(this)" />
+                            <button class="photo-button" onclick="openLightbox(this.firstElementChild)" aria-label="Enlarge photo: A beached whale found during a coastal walk">
+                                <img src="./assets/Whale.jpg" alt="A beached whale found during a coastal walk" class="personal-photo" loading="lazy" />
+                            </button>
                             <figcaption>A beached whale I came across during a coastal walk — not something you see every day.</figcaption>
                         </figure>
                         <figure class="personal-photo-item">
-                            <img src="./assets/bridge.jpg" alt="Bridge over the water" class="personal-photo" onclick="openLightbox(this)" />
+                            <button class="photo-button" onclick="openLightbox(this.firstElementChild)" aria-label="Enlarge photo: Bridge over the water">
+                                <img src="./assets/bridge.jpg" alt="Bridge over the water" class="personal-photo" loading="lazy" />
+                            </button>
                             <figcaption>Crossing a bridge along the coast on the same trip.</figcaption>
                         </figure>
                     </div>
@@ -81,15 +100,12 @@
         </div>
 
         <div id="lightbox-overlay" class="lightbox-overlay" onclick="closeLightbox()">
-            <img id="lightbox-img" src="" alt="" class="lightbox-img" />
+            <img id="lightbox-img" alt="" class="lightbox-img" />
         </div>
 
-        <img
-            src="./assets/arrow.png"
-            alt="Arrow icon"
-            class="icon arrow"
-            onclick="location.href='./#algorithm-analysis'"
-        />
+        <a href="#algorithm-analysis" class="arrow" aria-label="Scroll to Algorithm Analysis">
+            <img src="./assets/arrow.png" alt="" class="icon" />
+        </a>
     </section>
 
     <section id="algorithm-analysis">
@@ -100,7 +116,7 @@
             <div class="about-containers">
                 <div class="details-container color-container">
                     <h2 class="experience-sub-title project-title">Algorithm Analysis Strategies</h2>
-                    <p style="padding: 0 1.5rem 1rem 1.5rem; text-align: left;">
+                    <p class="page-text" style="text-align: left;">
                         This project demonstrates my understanding of core algorithm design strategies including
                         <strong>Greedy Algorithms</strong>, <strong>Divide and Conquer</strong>,
                         <strong>Dynamic Programming</strong>, and <strong>NP Problems</strong>.
@@ -116,22 +132,20 @@
                     </p>
 
                     <div class="btn-container">
-                        <button
+                        <a
                             class="btn btn-color-2 project-btn"
-                            onclick="window.open('https://github.com/shahzahans/Algorithm-Analysis-Strategies')">
+                            href="https://github.com/shahzahans/Algorithm-Analysis-Strategies"
+                            target="_blank" rel="noopener">
                             View on GitHub
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <img
-            src="./assets/arrow.png"
-            alt="Arrow icon"
-            class="icon arrow"
-            onclick="location.href='index.html#contact'"
-        />
+        <a href="index.html#contact" class="arrow" aria-label="Go to Contact">
+            <img src="./assets/arrow.png" alt="" class="icon" />
+        </a>
     </section>
 
     <footer>

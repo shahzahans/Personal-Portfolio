@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Update Resume — Shadman's Portfolio</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+    <script>
+        try {
+            if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark-mode');
+        } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mediaqueries.css">
+</head>
+<body>
+    <nav class="admin-nav">
+        <div class="logo">Shadman Shahzahan</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Back to portfolio</a></li>
+        </ul>
+    </nav>
+
+    <main class="admin-page">
+        <p class="section__text__p1">Private</p>
+        <h1 class="title">Update Resume</h1>
+
+        <div class="admin-card" id="status-card">
+            <h2>Live resume</h2>
+            <p id="status-text">Checking…</p>
+            <a href="./assets/Resume.pdf" target="_blank" rel="noopener">Open the live resume</a>
+        </div>
+
+        <div class="admin-card" id="upload-card" hidden>
+            <h2>Replace resume</h2>
+            <p>Choose the new PDF. You'll confirm with this device's passkey before anything changes.</p>
+            <input type="file" id="resume-file" accept="application/pdf">
+
+            <div id="upload-review" hidden>
+                <p>Replace the live resume with <strong id="review-name"></strong> (<span id="review-size"></span>)?</p>
+                <div class="btn-container">
+                    <button class="btn btn-color-2" id="confirm-upload">Confirm with passkey</button>
+                    <button class="btn btn-color-1" id="cancel-upload">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <details class="admin-card" id="setup-card">
+            <summary>Set up a passkey on this device</summary>
+            <p>
+                Needed once per device. Enter the setup token you added in Netlify, then confirm with your
+                fingerprint, face, or PIN.
+            </p>
+            <label for="setup-token">Setup token</label>
+            <input type="password" id="setup-token" autocomplete="off">
+            <label for="device-label">Device name</label>
+            <input type="text" id="device-label" placeholder="e.g. My laptop" maxlength="60">
+            <div class="btn-container">
+                <button class="btn btn-color-2" id="register-device">Set up passkey</button>
+            </div>
+        </details>
+
+        <p id="admin-message" class="admin-message" role="status" hidden></p>
+    </main>
+
+    <script src="admin.js"></script>
+</body>
+</html>

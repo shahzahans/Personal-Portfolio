@@ -36,11 +36,17 @@
     let birdY, birdVelocity, pipes, finishLineX, totalDistance, score, bestScore, state;
 
     function loadBest() {
-        return Number(localStorage.getItem('flappyShadBest') || 0);
+        try {
+            return Number(localStorage.getItem('flappyShadBest') || 0);
+        } catch (e) {
+            return 0;
+        }
     }
 
     function saveBest(value) {
-        localStorage.setItem('flappyShadBest', String(value));
+        try {
+            localStorage.setItem('flappyShadBest', String(value));
+        } catch (e) {}
     }
 
     function updateScoreboard() {
@@ -103,7 +109,8 @@
         );
     }
 
-    function update() {
+    // dt is measured in 60fps frames, so physics runs at the same speed on any refresh rate.
+    function update(dt) {
         if (state !== 'playing') return;
 
         const traveled = totalDistance - finishLineX;
@@ -112,12 +119,12 @@
         const maxFallSpeed = lerp(EASY_MAX_FALL_SPEED, HARD_MAX_FALL_SPEED, difficulty);
         const scrollSpeed = lerp(EASY_SCROLL_SPEED, HARD_SCROLL_SPEED, difficulty);
 
-        birdVelocity += gravity;
+        birdVelocity += gravity * dt;
         if (birdVelocity > maxFallSpeed) birdVelocity = maxFallSpeed;
-        birdY += birdVelocity;
+        birdY += birdVelocity * dt;
 
-        for (const pipe of pipes) pipe.x -= scrollSpeed;
-        finishLineX -= scrollSpeed;
+        for (const pipe of pipes) pipe.x -= scrollSpeed * dt;
+        finishLineX -= scrollSpeed * dt;
 
         if (birdY - BIRD_RADIUS < 0 || birdY + BIRD_RADIUS > HEIGHT) {
             endGame(false);
@@ -190,13 +197,20 @@
         ctx.strokeRect(1, 1, WIDTH - 2, HEIGHT - 2);
     }
 
-    function loop() {
-        update();
+    const FRAME_MS = 1000 / 60;
+    let lastTime = null;
+
+    function loop(now) {
+        // Clamp dt so a backgrounded tab doesn't teleport the bird on return.
+        const dt = lastTime === null ? 1 : Math.min((now - lastTime) / FRAME_MS, 3);
+        lastTime = now;
+        update(dt);
         draw();
         requestAnimationFrame(loop);
     }
 
-    canvas.addEventListener('click', function () {
+    canvas.addEventListener('pointerdown', function (e) {
+        e.preventDefault();
         canvas.focus();
         flap();
     });
@@ -208,5 +222,5 @@
     });
 
     resetGame();
-    loop();
+    requestAnimationFrame(loop);
 })();

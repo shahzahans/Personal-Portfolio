@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shadman's Portfolio</title>
+    <meta name="description" content="Shadman Shahzahan — software engineer building backend systems where correctness matters. Node, Express, FastAPI, PostgreSQL, AWS.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Shadman Shahzahan — Software Engineer">
+    <meta property="og:description" content="I build backend systems where correctness matters.">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/favicon-192.png">
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+    <script>
+        try {
+            if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark-mode');
+        } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="mediaqueries.css">
 </head>
@@ -30,15 +45,16 @@
     <nav id="hamburger-nav">
         <div class="logo">Shadman Shahzahan</div>
         <div class="hamburger-menu">
-            <div class="hamburger-icon" onclick="toggleMenu()">
+            <button class="hamburger-icon" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
             <div class="menu-links">
                 <ul>
                     <li><a href="#about" onclick="toggleMenu()">About</a></li>
                     <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+                    <li><a href="#tech-stack" onclick="toggleMenu()">Tech Stack</a></li>
                     <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
                     <li><a href="more.html#beyond-code" onclick="toggleMenu()">Beyond Code</a></li>
                     <li><a href="more.html#algorithm-analysis" onclick="toggleMenu()">Algorithm Analysis</a></li>
@@ -55,29 +71,23 @@
         <div class="section__text">
             <p class="section__text__p1">Hello, I'm</p>
             <h1 class="title">Shadman</h1>
-            <p class="section__text__p2"><span id="typing-text"></span><span class="typing-cursor">|</span></p>
+            <p class="section__text__p2"><span id="typing-text"></span><span class="typing-cursor" aria-hidden="true">|</span></p>
             <p class="section__tagline">I build backend systems where correctness matters.</p>
             <div class="btn-container">
-                <button 
-                    class="btn btn-color-2"
-                    onclick="window.open('./assets/Resume.pdf')">
+                <a class="btn btn-color-2" href="./assets/Resume.pdf" target="_blank" rel="noopener">
                     Download Resume
-                </button>
-                <button 
-                    class="btn btn-color-1"
-                    onclick="location.href='./#contact'">
+                </a>
+                <a class="btn btn-color-1" href="#contact">
                     Contact Info
-                </button>
+                </a>
             </div>
             <div id="Socials-container">
-                <img src="./assets/linkedin.png"
-                    alt="My Linkedin profile"
-                    class="icon"
-                    onclick="location.href='https://www.linkedin.com/in/shahzahans/'"/>
-                <img src="./assets/github.png"
-                    alt="My GitHub profile"
-                    class="icon"
-                    onclick="location.href='https://github.com/shahzahans'"/>
+                <a href="https://www.linkedin.com/in/shahzahans/" target="_blank" rel="noopener">
+                    <img src="./assets/linkedin.png" alt="My LinkedIn profile" class="icon" />
+                </a>
+                <a href="https://github.com/shahzahans" target="_blank" rel="noopener">
+                    <img src="./assets/github.png" alt="My GitHub profile" class="icon" />
+                </a>
             </div>
         </div>
     </section>
@@ -91,23 +101,24 @@
                     src="./assets/about-pic.jpg"
                     alt="Profile picture"
                     class="about-pic"
+                    loading="lazy"
                 />
             </div>
             <div class="about-details-container">
                 <div class="about-containers">
                     <div class="details-container">
                         <img
-                            src="./assets/experience.png" 
-                            alt="Experience icon"
+                            src="./assets/experience.png"
+                            alt=""
                             class="icon"
                         />
                         <h3>Experience</h3>
                         <p>Software Engineering Intern <br />Attention.ad</p>
                     </div>
                     <div class="details-container">
-                        <img 
-                            src="./assets/education.png" 
-                            alt="Education icon"
+                        <img
+                            src="./assets/education.png"
+                            alt=""
                             class="icon"
                         />
                         <h3>Education</h3>
@@ -133,163 +144,375 @@
                 </div>
             </div>
         </div>
-        <img 
-            src="./assets/arrow.png" 
-            alt="Arrow icon" 
-            class="icon arrow"
-            onclick="location.href='./#experience'"
-        />
+        <a href="#experience" class="arrow" aria-label="Scroll to Experience">
+            <img src="./assets/arrow.png" alt="" class="icon" />
+        </a>
     </section>
 
     <section id="experience">
-        <p class="section__text__p1">Explore My</p>
+        <p class="section__text__p1">Where I've</p>
         <h1 class="title">Experience</h1>
+
+        <ul class="timeline-legend">
+            <li class="timeline-eng">Engineering</li>
+            <li class="timeline-lead">Leadership</li>
+            <li class="timeline-work">Work</li>
+            <li class="timeline-edu">Education</li>
+        </ul>
+
+        <!--
+            To add an entry, copy one <li class="timeline-item ..."> block below.
+            Keep entries newest first. Types: timeline-eng, timeline-lead, timeline-work, timeline-edu.
+        -->
+        <ol class="timeline">
+            <li class="timeline-item timeline-work">
+                <span class="timeline-year">2026</span>
+                <div class="timeline-card">
+                    <span class="timeline-tag">Work</span>
+                    <h3>Employment Specialist</h3>
+                    <p class="timeline-org">Goodwill Industries of the Columbia Willamette · Full-time</p>
+                    <p class="timeline-date">Aug 2026 – Present</p>
+                    <p class="timeline-location">Washougal, WA</p>
+                </div>
+            </li>
+            <li class="timeline-item timeline-eng">
+                <span class="timeline-year">2026</span>
+                <div class="timeline-card">
+                    <span class="timeline-tag">Engineering</span>
+                    <h3>Founder &amp; Full-Stack Engineer</h3>
+                    <p class="timeline-org">Echofy</p>
+                    <p class="timeline-date">Jun 2026 – Present</p>
+                </div>
+            </li>
+            <li class="timeline-item timeline-eng">
+                <span class="timeline-year">2026</span>
+                <div class="timeline-card">
+                    <span class="timeline-tag">Engineering</span>
+                    <h3>Open-Source Contributor</h3>
+                    <p class="timeline-org">openpilot (comma.ai)</p>
+                    <p class="timeline-date">Jun 2026 – Jul 2026</p>
+                </div>
+            </li>
+            <li class="timeline-item timeline-eng">
+                <span class="timeline-year">2025</span>
+                <div class="timeline-card">
+                    <span class="timeline-tag">Engineering</span>
+                    <h3>Software Engineer Intern</h3>
+                    <p class="timeline-org">Attention.ad · Internship</p>
+                    <p class="timeline-date">Jun 2025 – Aug 2025</p>
+                    <p class="timeline-location">Remote</p>
+                </div>
+            </li>
+            <li class="timeline-item timeline-lead">
+                <span class="timeline-year">2024</span>
+                <div class="timeline-card">
+                    <span class="timeline-tag">Leadership</span>
+                    <h3>Treasurer</h3>
+                    <p class="timeline-org">SPU Developer Club</p>
+                    <p class="timeline-date">Sep 2024 – Jun 2026</p>
+                    <p class="timeline-location">Seattle, WA</p>
+                </div>
+            </li>
+            <li class="timeline-item timeline-work">
+                <span class="timeline-year">2024</span>
+                <div class="timeline-card">
+                    <span class="timeline-tag">Work</span>
+                    <h3>Sales Specialist</h3>
+                    <p class="timeline-org">Walmart · Seasonal</p>
+                    <p class="timeline-date">Jun 2024 – Jul 2025</p>
+                    <p class="timeline-location">Vancouver, WA</p>
+                </div>
+            </li>
+            <li class="timeline-item timeline-work">
+                <span class="timeline-year">2023</span>
+                <div class="timeline-card">
+                    <span class="timeline-tag">Work</span>
+                    <h3>Retail Sales Associate</h3>
+                    <p class="timeline-org">Seattle Kraken · Part-time</p>
+                    <p class="timeline-date">Nov 2023 – Sep 2024</p>
+                    <p class="timeline-location">Seattle, WA</p>
+                </div>
+            </li>
+            <li class="timeline-item timeline-work">
+                <span class="timeline-year">2022</span>
+                <div class="timeline-card">
+                    <span class="timeline-tag">Work</span>
+                    <h3>Retail Associate</h3>
+                    <p class="timeline-org">Macy's</p>
+                    <p class="timeline-date">Nov 2022 – Jan 2023</p>
+                    <p class="timeline-location">Vancouver, WA</p>
+                </div>
+            </li>
+            <li class="timeline-item timeline-edu">
+                <span class="timeline-year">2022</span>
+                <div class="timeline-card">
+                    <span class="timeline-tag">Education</span>
+                    <h3>Bachelor's Degree, Computer Science</h3>
+                    <p class="timeline-org">Seattle Pacific University</p>
+                    <p class="timeline-date">Sep 2022 – Jun 2026</p>
+                    <p class="timeline-location">Seattle, WA</p>
+                </div>
+            </li>
+            <li class="timeline-item timeline-work">
+                <span class="timeline-year">2022</span>
+                <div class="timeline-card">
+                    <span class="timeline-tag">Work</span>
+                    <h3>Automotive Mechanic</h3>
+                    <p class="timeline-org">AutoZone · Seasonal</p>
+                    <p class="timeline-date">Jun 2022 – Sep 2022</p>
+                    <p class="timeline-location">Vancouver, WA</p>
+                </div>
+            </li>
+            <li class="timeline-item timeline-edu">
+                <span class="timeline-year">2019</span>
+                <div class="timeline-card">
+                    <span class="timeline-tag">Education</span>
+                    <h3>Associate of Arts, General Studies</h3>
+                    <p class="timeline-org">Clark College</p>
+                    <p class="timeline-date">2019 – 2021</p>
+                    <p class="timeline-location">Vancouver, WA</p>
+                </div>
+            </li>
+        </ol>
+
+        <a href="#tech-stack" class="arrow" aria-label="Scroll to Tech Stack">
+            <img src="./assets/arrow.png" alt="" class="icon" />
+        </a>
+    </section>
+
+    <section id="tech-stack">
+        <p class="section__text__p1">Explore My</p>
+        <h1 class="title">Tech Stack</h1>
         <div class="experience-details-container">
 
-            <div class="about-containers">
+            <div class="tech-stack-grid">
                 <div class="details-container">
-                    <h2 class="experience-sub-title">Frontend Development</h2>
+                    <h2 class="experience-sub-title">Languages</h2>
                     <div class="article-container">
                         <article>
-                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
-                            <div>
-                                <h3>HTML</h3>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
-                            <div>
-                                <h3>CSS</h3>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
-                            <div>
-                                <h3>JavaScript</h3>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
-                            <div>
-                                <h3>TypeScript</h3>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
-                            <div>
-                                <h3>React</h3>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-
-                <div class="details-container">
-                    <h2 class="experience-sub-title">Backend Development</h2>
-                    <div class="article-container">
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
-                            <div>
-                                <h3>Node.js</h3>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
-                            <div>
-                                <h3>Express</h3>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
-                            <div>
-                                <h3>FastAPI</h3>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
                             <div>
                                 <h3>Python</h3>
                             </div>
                         </article>
                         <article>
-                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>JavaScript</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>TypeScript</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>SQL</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
                             <div>
                                 <h3>Java</h3>
                             </div>
                         </article>
                         <article>
-                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
                             <div>
                                 <h3>C++</h3>
                             </div>
                         </article>
                         <article>
-                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>Bash</h3>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="details-container">
+                    <h2 class="experience-sub-title">Backend &amp; APIs</h2>
+                    <div class="article-container">
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>Node.js</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>Express</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>REST APIs</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>FastAPI</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
                             <div>
                                 <h3>PostgreSQL</h3>
                             </div>
                         </article>
                         <article>
-                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
                             <div>
                                 <h3>MongoDB</h3>
                             </div>
                         </article>
                         <article>
-                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
                             <div>
                                 <h3>Prisma</h3>
                             </div>
                         </article>
+                    </div>
+                </div>
+
+                <div class="details-container">
+                    <h2 class="experience-sub-title">Frontend</h2>
+                    <div class="article-container">
                         <article>
-                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>React</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>Next.js</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>React Native</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>Expo</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>HTML/CSS</h3>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="details-container">
+                    <h2 class="experience-sub-title">Cloud &amp; DevOps</h2>
+                    <div class="article-container">
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>AWS RDS</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>Firebase</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
                             <div>
                                 <h3>Docker</h3>
                             </div>
                         </article>
                         <article>
-                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
                             <div>
-                                <h3>AWS</h3>
+                                <h3>Linux</h3>
                             </div>
                         </article>
                         <article>
-                            <img src="./assets/checkmark.png" alt="Experience-icon" class="icon" />
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>GitHub Actions</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>CI/CD</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
                             <div>
                                 <h3>Git</h3>
                             </div>
                         </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>Render</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>Netlify</h3>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="details-container">
+                    <h2 class="experience-sub-title">AI &amp; Automation</h2>
+                    <div class="article-container">
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>Gemini API</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>OpenAI API</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>AI Workflow Automation</h3>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="" class="icon" />
+                            <div>
+                                <h3>Process Automation</h3>
+                            </div>
+                        </article>
                     </div>
                 </div>
             </div>
-
-            <div class="about-containers">
-                <div class="details-container professional-container">
-                    <h2 class="experience-sub-title">Professional Experience</h2>
-
-                    <div class="professional-grid">
-                        <div class="professional-column">
-                            <h3>Software Engineering Intern — Attention.ad</h3>
-                            <p class="professional-meta">Summer 2025</p>
-                            <p class="professional-text">
-                                Built REST APIs with Node and Express, designed MongoDB schemas for high-frequency
-                                data, set up CI/CD pipelines, and optimized async backend services to cut API
-                                latency on key endpoints.
-                            </p>
-                        </div>
-
-                        <div class="professional-divider"></div>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
-        <img 
-            src="./assets/arrow.png" 
-            alt="Arrow icon" 
-            class="icon arrow"
-            onclick="location.href='./#projects'"
-        />
+        <a href="#projects" class="arrow" aria-label="Scroll to Projects">
+            <img src="./assets/arrow.png" alt="" class="icon" />
+        </a>
     </section>
 
     <section id="projects">
@@ -303,20 +526,22 @@
                             src="./assets/tripsplit.png"
                             alt="TripSplit Senior Project"
                             class="project-img"
+                            loading="lazy"
                         />
                     </div>
                     <h2 class="experience-sub-title project-title">TripSplit</h2>
-                    <p style="padding: 0 1rem 1rem 1rem;">
+                    <p class="project-description">
                         TripSplit is a mobile application that helps groups plan trips and automatically split
                         shared expenses. I’m leading the backend and database design.
                     </p>
                     <div class="btn-container">
-                        <img
-                            src="./assets/App Store.svg"
-                            alt="Download TripSplit on the App Store"
-                            class="app-store-badge"
-                            onclick="window.open('https://apps.apple.com/us/app/tripsplit-expense-sharing/id6761230723')"
-                        />
+                        <a href="https://apps.apple.com/us/app/tripsplit-expense-sharing/id6761230723" target="_blank" rel="noopener">
+                            <img
+                                src="./assets/App Store.svg"
+                                alt="Download TripSplit on the App Store"
+                                class="app-store-badge"
+                            />
+                        </a>
                     </div>
                 </div>
             </div>
@@ -326,16 +551,21 @@
                 <div class="details-container color-container">
                     <div class="article-container">
                         <img
-                            src="./assets/Aomatch.png"
+                            src="./assets/Aomatch.jpg"
                             alt="AoMatch project screenshot"
                             class="project-img"
+                            loading="lazy"
                         />
                     </div>
                     <h2 class="experience-sub-title project-title">AoMatch - Document Extraction & Review Pipeline</h2>
+                    <p class="project-description">
+                        Extracts fields from grant and compliance documents and traces each one back to its source
+                        sentence, with a review interface for verifying and exporting results.
+                    </p>
                     <div class="btn-container">
-                        <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/shahzahans/Aomatch/tree/main'">
+                        <a class="btn btn-color-2 project-btn" href="https://github.com/shahzahans/Aomatch/tree/main" target="_blank" rel="noopener">
                             Open in GitHub
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -345,13 +575,14 @@
                             src="./assets/IBM.png"
                             alt="IBM Quantum Challenge project screenshot"
                             class="project-img"
+                            loading="lazy"
                         />
                     </div>
                     <h2 class="experience-sub-title project-title">IBM Quantum Challenge</h2>
                     <div class="btn-container">
-                        <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/shahzahans/ibm-quantum-hackathon'">
+                        <a class="btn btn-color-2 project-btn" href="https://github.com/shahzahans/ibm-quantum-hackathon" target="_blank" rel="noopener">
                             Open in GitHub
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -361,24 +592,26 @@
                             src="./assets/Yelp.jpg"
                             alt="QuestEats project screenshot"
                             class="project-img"
+                            loading="lazy"
                         />
                     </div>
-                    <h2 class="experience-sub-title project-title">QuestEats </h2>
+                    <h2 class="experience-sub-title project-title">QuestEats</h2>
+                    <p class="project-description">
+                        A Yelp AI Hackathon 2025 project that turns picking a restaurant into food quests, with
+                        badges and streaks. Built with Node, Express, MongoDB, and React.
+                    </p>
                     <div class="btn-container">
-                        <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/shahzahans/Yelp-Hackathon'">
+                        <a class="btn btn-color-2 project-btn" href="https://github.com/shahzahans/Yelp-Hackathon" target="_blank" rel="noopener">
                             Open in GitHub
-                        </button>
+                        </a>
                     </div>
                 </div>
 
             </div>
         </div>
-        <img
-            src="./assets/arrow.png"
-            alt="Arrow icon"
-            class="icon arrow"
-            onclick="location.href='./#play-a-game'"
-        />
+        <a href="#play-a-game" class="arrow" aria-label="Scroll to Play A Game">
+            <img src="./assets/arrow.png" alt="" class="icon" />
+        </a>
     </section>
 
     <section id="play-a-game">
@@ -393,7 +626,7 @@
                         <span id="flappy-shad-score">Score: 0</span>
                         <span id="flappy-shad-best">Best: 0</span>
                     </div>
-                    <canvas id="flappy-shad-canvas" width="600" height="260" tabindex="0"></canvas>
+                    <canvas id="flappy-shad-canvas" width="600" height="260" tabindex="0" aria-label="Flappy Shad game"></canvas>
                     <p id="flappy-shad-message" class="game-message">
                         Click the game or press Space to flap. Starts slow, gets harder near the finish line.
                     </p>
@@ -401,12 +634,9 @@
             </div>
         </div>
 
-        <img
-            src="./assets/arrow.png"
-            alt="Arrow icon"
-            class="icon arrow"
-            onclick="location.href='./#contact'"
-        />
+        <a href="#contact" class="arrow" aria-label="Scroll to Contact">
+            <img src="./assets/arrow.png" alt="" class="icon" />
+        </a>
     </section>
 
     <section id="contact">
@@ -414,20 +644,20 @@
         <h1 class="title">Contact Me</h1>
         <div class="contact-info-upper-container">
             <div class="contact-info-container">
-                <img 
-                    src="./assets/email.png" 
+                <img
+                    src="./assets/email.png"
                     alt="Email icon"
                     class="icon contact-icon email-icon"
                 />
                 <p><a href="mailto:shahzahans@outlook.com">shahzahans@outlook.com</a></p>
             </div>
             <div class="contact-info-container">
-                <img 
-                    src="./assets/linkedin.png" 
+                <img
+                    src="./assets/linkedin.png"
                     alt="Linkedin icon"
                     class="icon contact-icon"
                 />
-                <p><a href="https://www.linkedin.com/in/shahzahans/">LinkedIn</a></p>
+                <p><a href="https://www.linkedin.com/in/shahzahans/" target="_blank" rel="noopener">LinkedIn</a></p>
             </div>
         </div>
     </section>
