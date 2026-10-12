@@ -1,6 +1,12 @@
 // Shared helpers for the resume-update functions.
 import { getStore } from '@netlify/blobs';
-import { timingSafeEqual, randomUUID } from 'node:crypto';
+import { timingSafeEqual, randomUUID, webcrypto } from 'node:crypto';
+
+// Netlify may run functions on Node 18, which has Web Crypto but doesn't expose it globally.
+// The passkey library looks for globalThis.crypto, so provide it.
+if (!globalThis.crypto) {
+    Object.defineProperty(globalThis, 'crypto', { value: webcrypto, configurable: true });
+}
 
 const isDev = process.env.NETLIFY_DEV === 'true';
 
