@@ -2,6 +2,10 @@
   publish = "."
   functions = "netlify/functions"
 
+# Functions run on the build's Node version; the passkey library needs Node 20+
+[build.environment]
+  NODE_VERSION = "22"
+
 [functions]
   node_bundler = "esbuild"
 
