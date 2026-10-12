@@ -30,6 +30,7 @@ export default async (req) => {
             case 'register/verify': return await registerVerify(body);
             case 'auth/options': return await authOptions();
             case 'resume': return await uploadResume(body);
+            case 'auth/verify': return await verifyOnly(body);
             default: return json(404, { error: 'Not found' });
         }
     } catch (err) {
@@ -112,14 +113,14 @@ async function authOptions() {
     return json(200, { options, challengeId });
 }
 
-// Every upload carries a fresh passkey signature, so each change is confirmed on the owner's device.
-async function uploadResume({ challengeId, response, file }) {
+// Checks a passkey signature against a stored passkey. Returns { stored } on success or { error: Response }.
+async function checkPasskey(challengeId, response) {
     const expectedChallenge = await consumeChallenge(challengeId, 'auth');
-    if (!expectedChallenge) return json(400, { error: 'Confirmation expired. Try again.' });
+    if (!expectedChallenge) return { error: json(400, { error: 'Confirmation expired. Try again.' }) };
 
     const credentials = await loadCredentials();
     const stored = credentials.find((c) => c.id === response?.id);
-    if (!stored) return json(403, { error: 'This passkey is not allowed to make changes' });
+    if (!stored) return { error: json(403, { error: 'This passkey is not allowed to make changes' }) };
 
     const { verified, authenticationInfo } = await verifyAuthenticationResponse({
         response,
@@ -134,11 +135,25 @@ async function uploadResume({ challengeId, response, file }) {
         },
         requireUserVerification: true,
     }).catch(() => ({ verified: false }));
-    if (!verified) return json(403, { error: 'Passkey check failed' });
+    if (!verified) return { error: json(403, { error: 'Passkey check failed' }) };
 
     stored.counter = authenticationInfo.newCounter;
     stored.lastUsedAt = new Date().toISOString();
     await saveCredentials(credentials);
+
+    return { stored };
+}
+
+// Confirms the owner's identity without changing anything (used to mark a device as the owner's).
+async function verifyOnly({ challengeId, response }) {
+    const { error } = await checkPasskey(challengeId, response);
+    return error || json(200, { ok: true });
+}
+
+// Every upload carries a fresh passkey signature, so each change is confirmed on the owner's device.
+async function uploadResume({ challengeId, response, file }) {
+    const { stored, error } = await checkPasskey(challengeId, response);
+    if (error) return error;
 
     // Only accept real PDFs under the size limit.
     if (typeof file?.data !== 'string') return json(400, { error: 'No file was sent' });

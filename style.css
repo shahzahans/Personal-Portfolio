@@ -1027,6 +1027,11 @@ details.admin-card[open] summary {
     margin: 1rem 0 0;
 }
 
+.admin-wide-btn {
+    width: auto;
+    padding: 0.75rem 1.25rem;
+}
+
 .admin-card .btn:disabled {
     opacity: 0.6;
     cursor: wait;

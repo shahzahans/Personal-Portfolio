@@ -9,6 +9,10 @@ function rememberOwnerDevice() {
     try { localStorage.setItem('portfolioOwner', '1'); } catch (e) {}
 }
 
+function isOwnerDevice() {
+    try { return localStorage.getItem('portfolioOwner') === '1'; } catch (e) { return false; }
+}
+
 function showMessage(text, kind) {
     messageEl.textContent = text;
     messageEl.className = 'admin-message' + (kind ? ' admin-message-' + kind : '');
@@ -50,6 +54,7 @@ async function loadStatus() {
             ? `${status.resume.filename}, updated ${new Date(status.resume.uploadedAt).toLocaleString()}`
             : 'Using the resume that shipped with the site (no uploads yet).';
         $('upload-card').hidden = !status.registered;
+        $('remember-device').hidden = !status.registered || isOwnerDevice();
         $('setup-card').open = !status.registered;
     } catch (err) {
         $('status-text').textContent = 'Could not reach the update service. It only works on the live site.';
@@ -128,6 +133,32 @@ function readAsBase64(file) {
     });
 }
 
+// Asks this device's passkey (fingerprint / face / PIN) to sign a fresh server challenge.
+async function signWithPasskey() {
+    const { options, challengeId } = await api('auth/options', {});
+    const assertion = await navigator.credentials.get({
+        publicKey: {
+            ...options,
+            challenge: b64urlToBuffer(options.challenge),
+            allowCredentials: (options.allowCredentials || []).map((c) => ({ ...c, id: b64urlToBuffer(c.id) })),
+        },
+    });
+    const response = {
+        id: assertion.id,
+        rawId: bufferToB64url(assertion.rawId),
+        type: assertion.type,
+        authenticatorAttachment: assertion.authenticatorAttachment || undefined,
+        clientExtensionResults: assertion.getClientExtensionResults(),
+        response: {
+            clientDataJSON: bufferToB64url(assertion.response.clientDataJSON),
+            authenticatorData: bufferToB64url(assertion.response.authenticatorData),
+            signature: bufferToB64url(assertion.response.signature),
+            userHandle: assertion.response.userHandle ? bufferToB64url(assertion.response.userHandle) : undefined,
+        },
+    };
+    return { challengeId, response };
+}
+
 $('confirm-upload').addEventListener('click', async () => {
     if (!selectedFile) return;
     const button = $('confirm-upload');
@@ -135,27 +166,7 @@ $('confirm-upload').addEventListener('click', async () => {
 
     try {
         const data = await readAsBase64(selectedFile);
-        const { options, challengeId } = await api('auth/options', {});
-        const assertion = await navigator.credentials.get({
-            publicKey: {
-                ...options,
-                challenge: b64urlToBuffer(options.challenge),
-                allowCredentials: (options.allowCredentials || []).map((c) => ({ ...c, id: b64urlToBuffer(c.id) })),
-            },
-        });
-        const response = {
-            id: assertion.id,
-            rawId: bufferToB64url(assertion.rawId),
-            type: assertion.type,
-            authenticatorAttachment: assertion.authenticatorAttachment || undefined,
-            clientExtensionResults: assertion.getClientExtensionResults(),
-            response: {
-                clientDataJSON: bufferToB64url(assertion.response.clientDataJSON),
-                authenticatorData: bufferToB64url(assertion.response.authenticatorData),
-                signature: bufferToB64url(assertion.response.signature),
-                userHandle: assertion.response.userHandle ? bufferToB64url(assertion.response.userHandle) : undefined,
-            },
-        };
+        const { challengeId, response } = await signWithPasskey();
         await api('resume', { challengeId, response, file: { name: selectedFile.name, data } });
         rememberOwnerDevice();
         showMessage('Resume updated. The Download Resume button now serves the new file.', 'success');
@@ -165,6 +176,18 @@ $('confirm-upload').addEventListener('click', async () => {
         showMessage(err.name === 'NotAllowedError' ? 'Confirmation was cancelled. Nothing changed.' : err.message, 'error');
     } finally {
         button.disabled = false;
+    }
+});
+
+$('remember-device').addEventListener('click', async () => {
+    try {
+        const { challengeId, response } = await signWithPasskey();
+        await api('auth/verify', { challengeId, response });
+        rememberOwnerDevice();
+        $('remember-device').hidden = true;
+        showMessage('Done. The Update Resume icon now shows in your portfolio on this device.', 'success');
+    } catch (err) {
+        showMessage(err.name === 'NotAllowedError' ? 'Confirmation was cancelled.' : err.message, 'error');
     }
 });
 
