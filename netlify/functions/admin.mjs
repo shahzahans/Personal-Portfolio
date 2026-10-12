@@ -34,7 +34,7 @@ export default async (req) => {
         }
     } catch (err) {
         console.error(err);
-        return json(500, { error: 'Something went wrong on the server' });
+        return json(500, { error: 'Something went wrong on the server', detail: String(err?.message || err), node: process.version });
     }
 };
 
